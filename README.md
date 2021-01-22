@@ -1,4 +1,5 @@
-# 檢視專案
+# Angular Demo
+以login頁做展示
 
 ## 專案起點: 
 * \src\app\app.component.html
