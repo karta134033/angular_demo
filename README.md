@@ -1,27 +1,54 @@
-# AngularDemo
+# 檢視專案
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
+## 專案起點: 
+* \src\app\app.component.html
+* \src\app\app.component.ts
 
-## Development server
+## 專案做法:
+### 加入美化套件
+* ng add @angular/material
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### 將使用到的模組一個一個import
+檔案位置在 \src\app\app.module.ts
+```typescript
+...
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
 
-## Code scaffolding
+@NgModule({
+  ...
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule
+  ],
+  ...
+})
+export class AppModule { }
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
 
-## Build
+### 設定html
+* 為了demo方便css是寫在tag裡，component.ts的css通常會定義在component.css
+* 利用雙向綁定綁定username, password，html有變動component的值也會變動。
+* 利用事件綁定綁定登入的function
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### 設定component
+* 登入function只判定帳號密碼一樣就代表成功，並做對應的跳轉。
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## 結果 
+* 路由轉換的內容會嵌在<router-outlet></router-outlet>
+* 因為路由設定的關係，當我們訪問http://127.0.0.1:4200 時會自動導轉到http://127.0.0.1:4200/login 
+![](https://i.imgur.com/G3mYuZG.png)
